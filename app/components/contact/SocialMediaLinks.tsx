@@ -13,7 +13,7 @@ const SocialMediaLinks: React.FC = () => {
         <div className="flex justify-center gap-8">
           {/* Facebook */}
           <a
-            href="https://www.facebook.com/yourpage"
+            href="https://www.facebook.com/officialindiapropertyshow"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:text-blue-800 transition duration-300"
@@ -23,7 +23,7 @@ const SocialMediaLinks: React.FC = () => {
 
           {/* Twitter */}
           <a
-            href="https://twitter.com/yourpage"
+            href="https://x.com/maxpoae"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-400 hover:text-blue-600 transition duration-300"
@@ -33,7 +33,7 @@ const SocialMediaLinks: React.FC = () => {
 
           {/* LinkedIn */}
           <a
-            href="https://www.linkedin.com/in/yourpage"
+            href="https://www.linkedin.com/showcase/india-property-show"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-700 hover:text-blue-900 transition duration-300"
@@ -43,7 +43,7 @@ const SocialMediaLinks: React.FC = () => {
 
           {/* Instagram */}
           <a
-            href="https://www.instagram.com/yourpage"
+            href="https://www.instagram.com/officialindiapropertyshow/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-pink-500 hover:text-pink-700 transition duration-300"

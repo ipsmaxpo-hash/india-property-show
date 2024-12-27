@@ -4,9 +4,9 @@ import React from "react";
 
 const videos = [
   {
-    title: "International Property Expo 2023 Highlights",
-    url: "https://youtu.be/7XRHMrTSK5g?si=KiZXOl0OxipXnzuf",
-    thumbnail: "https://img.youtube.com/vi/7XRHMrTSK5g/0.jpg", // Replace with YouTube thumbnail
+    title: "India Property Show - 2024",
+    url: "https://youtu.be/zvn801GmCrc?si=HLqx_nQKsqzbY1x0",
+    thumbnail: "https://img.youtube.com/vi/zvn801GmCrc/0.jpg", // Replace with YouTube thumbnail
   },
   {
     title: "Global Real Estate Summit 2022 Recap",

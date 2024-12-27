@@ -10,12 +10,12 @@ const CTASection: React.FC = () => {
         <p className="text-lg sm:text-xl mb-8">
           Register now to secure your spot at the event and connect with industry leaders, innovators, and visionaries.
         </p>
-        <a
+        {/* <a
           href="#register"
           className="inline-block bg-yellow-500 text-gray-900 font-semibold text-lg py-3 px-8 rounded-lg shadow-lg hover:bg-yellow-600 transition duration-300"
         >
           Register Now
-        </a>
+        </a> */}
       </div>
     </section>
   );

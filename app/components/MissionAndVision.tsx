@@ -43,7 +43,7 @@ const MissionAndVision: React.FC = () => {
         {/* Call to Action Section */}
         <div className="mt-12">
           <a
-            href="#register"
+            href="/register"
             className="inline-block bg-indigo-600 text-white px-8 py-4 rounded-lg text-lg font-medium transition-all hover:bg-indigo-700"
           >
             Register Now

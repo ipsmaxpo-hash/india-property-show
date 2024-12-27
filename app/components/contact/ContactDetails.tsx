@@ -18,6 +18,11 @@ const ContactDetails: React.FC = () => {
               +971 50 943 1529
               </a>
             </p>
+            <p className="text-lg text-gray-600">
+              <a href="tel:+1234567890" className="text-blue-600 hover:underline">
+              +91 9845114655
+              </a>
+            </p>
           </div>
 
           {/* Email Address */}
@@ -28,16 +33,21 @@ const ContactDetails: React.FC = () => {
               dubai@maxpo.ae
               </a>
             </p>
+            <p className="text-lg text-gray-600">
+              <a href="mailto:contact@event.com" className="text-blue-600 hover:underline">
+              info@maxpo.ae
+              </a>
+            </p>
           </div>
 
           {/* Office Address */}
-          <div className="bg-gray-50 p-6 rounded-lg shadow-lg">
+          {/* <div className="bg-gray-50 p-6 rounded-lg shadow-lg">
             <h3 className="text-xl font-semibold text-gray-700 mb-4">Office Address</h3>
             <p className="text-lg text-gray-600">
               123 Event Street, Suite 456 <br />
               City, State, 12345
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
