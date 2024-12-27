@@ -56,12 +56,12 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
           <Image
             src={event.image}
             alt={event.name}
-            
-            
+            layout="fill"
+            objectFit="cover"
           />
         </Link>
       </div>
-      <div className="p-8">
+      <div className="p-6"> {/* Reduced padding from p-8 to p-6 */}
         <h3 className="text-3xl font-bold text-gray-800 mb-3">{event.name}</h3>
         <p className="text-lg text-gray-600 mb-4 flex items-center">
           <FaMapMarkerAlt className="mr-2" />
@@ -74,7 +74,7 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
         <Countdown
           date={event.eventDate}
           renderer={({ days, hours, minutes, seconds }) => (
-            <div className="flex justify-between text-center mb-8">
+            <div className="flex justify-between text-center mb-6"> {/* Reduced margin from mb-8 to mb-6 */}
               <div className="bg-blue-100 rounded p-3">
                 <div className="text-3xl font-bold text-blue-600">{days}</div>
                 <div className="text-base text-blue-600">Days</div>
