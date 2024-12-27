@@ -12,7 +12,7 @@ const HeroSection: React.FC = () => {
           muted
           playsInline
           // Add your video source path here
-          src="/video/Show.mp4"
+          src="/video/Shows.mp4"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       </div>
