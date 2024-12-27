@@ -94,7 +94,7 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
         />
         <div className="flex justify-between items-center">
           <a
-            href="#register"
+            href="/register"
             className="px-6 py-3 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition duration-300"
           >
             Register Now
