@@ -4,7 +4,7 @@ const HeroSection: React.FC = () => {
   return (
     <section className="relative h-screen overflow-hidden">
       {/* Video Background */}
-      {/* <div className="absolute inset-0">
+      <div className="absolute inset-0">
         <video
           className="w-full h-full object-cover"
           autoPlay
@@ -15,7 +15,7 @@ const HeroSection: React.FC = () => {
           src="/video/Show.mp4"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-      </div> */}
+      </div>
       {/* Content on top of video */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center h-full px-4 text-white">
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
