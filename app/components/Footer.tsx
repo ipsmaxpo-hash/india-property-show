@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
             <h3 className="text-2xl font-semibold mb-4">Follow Us</h3>
             <div className="flex space-x-6">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/officialindiapropertyshow"
                 className="text-white hover:text-indigo-400 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
                 <FaFacebookF size={24} />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://www.instagram.com/officialindiapropertyshow/"
                 className="text-white hover:text-indigo-400 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -67,7 +67,7 @@ const Footer: React.FC = () => {
                 <FaTwitter size={24} />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/showcase/india-property-show"
                 className="text-white hover:text-indigo-400 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -75,7 +75,7 @@ const Footer: React.FC = () => {
                 <FaLinkedinIn size={24} />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/officialindiapropertyshow/"
                 className="text-white hover:text-indigo-400 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
