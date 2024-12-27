@@ -1,5 +1,5 @@
 import FeaturedTestimonials from "../components/FeaturedTestimonials";
-import MasonryTestimonials from "../components/MasonryTestimonials";
+// import MasonryTestimonials from "../components/MasonryTestimonials";
 import SubmitTestimonialForm from "../components/SubmitTestimonialForm";
 import TestimonialHero from "../components/TestimonialHero";
 import TestimonialIntroduction from "../components/TestimonialIntroduction";
@@ -11,7 +11,7 @@ export default function Home() {
       <TestimonialHero />
       <TestimonialIntroduction />
       <FeaturedTestimonials />
-      <MasonryTestimonials />
+      {/* <MasonryTestimonials /> */}
       <SubmitTestimonialForm />
       </main>
     )
