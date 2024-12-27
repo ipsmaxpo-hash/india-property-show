@@ -1,47 +1,130 @@
 'use client'
 
 import { useState } from 'react'
+import { toast } from 'react-hot-toast'
+import { z } from 'zod'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 
-const countries = ["Bahrain", "India", "UAE", "Saudi Arabia", "Kuwait", "Oman", "Qatar"]
+// Removed countries array
+
+const exhibitorSchema = z.object({
+  companyName: z.string().min(2, "Company name must be at least 2 characters"),
+  city: z.string().min(2, "City name must be at least 2 characters"),
+  contactPerson: z.string().min(2, "Contact person name must be at least 2 characters"),
+  designation: z.string().min(2, "Designation must be at least 2 characters"),
+  mobileNumber: z.string().regex(/^\+?[1-9]\d{7,14}$/, "Please enter a valid mobile number"),
+  email: z.string().email("Please enter a valid email address"),
+  // eventType: z.literal('India Property Show (Bahrain)'),
+})
+
+const visitorSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  country: z.enum(["Bahrain", "India", "UAE", "Saudi Arabia", "Kuwait", "Oman", "Qatar" , "other"] as [string, ...string[]], {
+    errorMap: () => ({ message: "Please select a country" }),
+  }),
+  email: z.string().email("Please enter a valid email address"),
+  mobileNumber: z.string().regex(/^\+?[1-9]\d{7,14}$/, "Please enter a valid mobile number"),
+  // eventType: z.literal('India Property Show (Bahrain)'),
+  purposeOfVisit: z.string().min(5, "Purpose of visit must be at least 5 characters"),
+})
+
+type ExhibitorFormData = z.infer<typeof exhibitorSchema>
+type VisitorFormData = z.infer<typeof visitorSchema>
 
 export function RegistrationForms() {
-  const [exhibitorForm, setExhibitorForm] = useState({
-    companyName: '',
-    country: '',
-    contactPerson: '',
-    designation: '',
-    mobileNumber: '',
-    email: '',
-    eventType: 'India Property Show (Bahrain)'
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showThankYou, setShowThankYou] = useState(false)
+  const [registrationType, setRegistrationType] = useState<'exhibitor' | 'visitor' | null>(null)
+
+  const {
+    register: registerExhibitor,
+    handleSubmit: handleSubmitExhibitor,
+    formState: { errors: exhibitorErrors },
+    reset: resetExhibitor,
+  } = useForm<ExhibitorFormData>({
+    resolver: zodResolver(exhibitorSchema),
+   
   })
 
-  const [visitorForm, setVisitorForm] = useState({
-    name: '',
-    country: '',
-    email: '',
-    mobileNumber: '',
-    eventType: 'India Property Show (Bahrain)',
-    purposeOfVisit: ''
+  const {
+    register: registerVisitor,
+    handleSubmit: handleSubmitVisitor,
+    formState: { errors: visitorErrors },
+    reset: resetVisitor,
+  } = useForm<VisitorFormData>({
+    resolver: zodResolver(visitorSchema),
+   
   })
 
-  const handleExhibitorChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setExhibitorForm({ ...exhibitorForm, [e.target.name]: e.target.value })
+  const handleExhibitorSubmit = async (data: ExhibitorFormData) => {
+    setIsSubmitting(true)
+    try {
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ type: 'exhibitor', ...data }),
+      })
+      if (!response.ok) throw new Error('Failed to submit form')
+      setShowThankYou(true)
+      setRegistrationType('exhibitor')
+    } catch (error) {
+      console.error('Error submitting exhibitor form:', error)
+      toast.error('Failed to submit exhibitor form. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
-  const handleVisitorChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setVisitorForm({ ...visitorForm, [e.target.name]: e.target.value })
+  const handleVisitorSubmit = async (data: VisitorFormData) => {
+    setIsSubmitting(true)
+    try {
+      const response = await fetch('/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ type: 'visitor', ...data }),
+      })
+      if (!response.ok) throw new Error('Failed to submit form')
+      setShowThankYou(true)
+      setRegistrationType('visitor')
+    } catch (error) {
+      console.error('Error submitting visitor form:', error)
+      toast.error('Failed to submit visitor form. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
-  const handleExhibitorSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Exhibitor form submitted:', exhibitorForm)
-    // Add your form submission logic here
+  const resetForms = () => {
+    resetExhibitor()
+    resetVisitor()
+    setShowThankYou(false)
+    setRegistrationType(null)
   }
 
-  const handleVisitorSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log('Visitor form submitted:', visitorForm)
-    // Add your form submission logic here
+  if (showThankYou) {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="bg-white shadow-md rounded-lg p-6 text-center">
+          <h2 className="text-2xl font-bold mb-4">Thank You for Registering!</h2>
+          <p className="text-lg mb-4">
+            We appreciate your interest in the India Property Show as{' '}
+            {registrationType === 'exhibitor' ? 'an exhibitor' : 'a visitor'}.
+          </p>
+          <p className="text-lg mb-6">We will get back to you soon with more information.</p>
+          <button
+            onClick={resetForms}
+            className="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          >
+            Register Another
+          </button>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -49,195 +132,172 @@ export function RegistrationForms() {
       <div className="grid md:grid-cols-2 gap-8">
         <div className="bg-white shadow-md rounded-lg p-6">
           <h2 className="text-2xl font-bold mb-6">Exhibitor Registration</h2>
-          <form onSubmit={handleExhibitorSubmit} className="space-y-4">
+          <form onSubmit={handleSubmitExhibitor(handleExhibitorSubmit)} className="space-y-4">
             <div>
               <label htmlFor="companyName" className="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
               <input
                 type="text"
                 id="companyName"
-                name="companyName"
-                value={exhibitorForm.companyName}
-                onChange={handleExhibitorChange}
+                {...registerExhibitor('companyName')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter company name"
-                required
               />
+              {exhibitorErrors.companyName && (
+                <p className="mt-1 text-sm text-red-600">{exhibitorErrors.companyName.message}</p>
+              )}
             </div>
             <div>
-              <label htmlFor="exhibitorCountry" className="block text-sm font-medium text-gray-700 mb-1">Country</label>
-              <select
-                id="exhibitorCountry"
-                name="country"
-                value={exhibitorForm.country}
-                onChange={handleExhibitorChange}
+              <label htmlFor="exhibitorCity" className="block text-sm font-medium text-gray-700 mb-1">City</label>
+              <input
+                type="text"
+                id="exhibitorCity"
+                {...registerExhibitor('city')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              >
-                <option value="">Select country</option>
-                {countries.map((country) => (
-                  <option key={country} value={country}>{country}</option>
-                ))}
-              </select>
+                placeholder="Enter city"
+              />
+              {exhibitorErrors.city && (
+                <p className="mt-1 text-sm text-red-600">{exhibitorErrors.city.message}</p>
+              )}
             </div>
             <div>
               <label htmlFor="contactPerson" className="block text-sm font-medium text-gray-700 mb-1">Contact Person</label>
               <input
                 type="text"
                 id="contactPerson"
-                name="contactPerson"
-                value={exhibitorForm.contactPerson}
-                onChange={handleExhibitorChange}
+                {...registerExhibitor('contactPerson')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter contact person"
-                required
               />
+              {exhibitorErrors.contactPerson && (
+                <p className="mt-1 text-sm text-red-600">{exhibitorErrors.contactPerson.message}</p>
+              )}
             </div>
             <div>
               <label htmlFor="designation" className="block text-sm font-medium text-gray-700 mb-1">Designation</label>
               <input
                 type="text"
                 id="designation"
-                name="designation"
-                value={exhibitorForm.designation}
-                onChange={handleExhibitorChange}
+                {...registerExhibitor('designation')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter designation"
-                required
               />
+              {exhibitorErrors.designation && (
+                <p className="mt-1 text-sm text-red-600">{exhibitorErrors.designation.message}</p>
+              )}
             </div>
             <div>
               <label htmlFor="exhibitorMobile" className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
               <input
                 type="tel"
                 id="exhibitorMobile"
-                name="mobileNumber"
-                value={exhibitorForm.mobileNumber}
-                onChange={handleExhibitorChange}
+                {...registerExhibitor('mobileNumber')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter mobile number"
-                required
               />
+              {exhibitorErrors.mobileNumber && (
+                <p className="mt-1 text-sm text-red-600">{exhibitorErrors.mobileNumber.message}</p>
+              )}
             </div>
             <div>
               <label htmlFor="exhibitorEmail" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
               <input
                 type="email"
                 id="exhibitorEmail"
-                name="email"
-                value={exhibitorForm.email}
-                onChange={handleExhibitorChange}
+                {...registerExhibitor('email')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter email"
-                required
               />
-            </div>
-            <div>
-              <label htmlFor="exhibitorEventType" className="block text-sm font-medium text-gray-700 mb-1">Event Type</label>
-              <input
-                type="text"
-                id="exhibitorEventType"
-                name="eventType"
-                value={exhibitorForm.eventType}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100"
-                readOnly
-              />
+              {exhibitorErrors.email && (
+                <p className="mt-1 text-sm text-red-600">{exhibitorErrors.email.message}</p>
+              )}
             </div>
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              disabled={isSubmitting}
+              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
             >
-              Register as Exhibitor
+              {isSubmitting ? 'Submitting...' : 'Register as Exhibitor'}
             </button>
           </form>
         </div>
 
         <div className="bg-white shadow-md rounded-lg p-6">
           <h2 className="text-2xl font-bold mb-6">Visitor Registration</h2>
-          <form onSubmit={handleVisitorSubmit} className="space-y-4">
+          <form onSubmit={handleSubmitVisitor(handleVisitorSubmit)} className="space-y-4">
             <div>
               <label htmlFor="visitorName" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
               <input
                 type="text"
                 id="visitorName"
-                name="name"
-                value={visitorForm.name}
-                onChange={handleVisitorChange}
+                {...registerVisitor('name')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter your name"
-                required
               />
+              {visitorErrors.name && (
+                <p className="mt-1 text-sm text-red-600">{visitorErrors.name.message}</p>
+              )}
             </div>
             <div>
               <label htmlFor="visitorCountry" className="block text-sm font-medium text-gray-700 mb-1">Country</label>
               <select
                 id="visitorCountry"
-                name="country"
-                value={visitorForm.country}
-                onChange={handleVisitorChange}
+                {...registerVisitor('country')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
               >
                 <option value="">Select country</option>
-                {countries.map((country) => (
+                {["Bahrain", "India", "UAE", "Saudi Arabia", "Kuwait", "Oman", "Qatar" , "other"].map((country) => (
                   <option key={country} value={country}>{country}</option>
                 ))}
               </select>
+              {visitorErrors.country && (
+                <p className="mt-1 text-sm text-red-600">{visitorErrors.country.message}</p>
+              )}
             </div>
             <div>
               <label htmlFor="visitorEmail" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
               <input
                 type="email"
                 id="visitorEmail"
-                name="email"
-                value={visitorForm.email}
-                onChange={handleVisitorChange}
+                {...registerVisitor('email')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter your email"
-                required
               />
+              {visitorErrors.email && (
+                <p className="mt-1 text-sm text-red-600">{visitorErrors.email.message}</p>
+              )}
             </div>
             <div>
               <label htmlFor="visitorMobile" className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
               <input
                 type="tel"
                 id="visitorMobile"
-                name="mobileNumber"
-                value={visitorForm.mobileNumber}
-                onChange={handleVisitorChange}
+                {...registerVisitor('mobileNumber')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter your mobile number"
-                required
               />
-            </div>
-            <div>
-              <label htmlFor="visitorEventType" className="block text-sm font-medium text-gray-700 mb-1">Event Type</label>
-              <input
-                type="text"
-                id="visitorEventType"
-                name="eventType"
-                value={visitorForm.eventType}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100"
-                readOnly
-              />
+              {visitorErrors.mobileNumber && (
+                <p className="mt-1 text-sm text-red-600">{visitorErrors.mobileNumber.message}</p>
+              )}
             </div>
             <div>
               <label htmlFor="purposeOfVisit" className="block text-sm font-medium text-gray-700 mb-1">Purpose of Visit</label>
               <input
                 type="text"
                 id="purposeOfVisit"
-                name="purposeOfVisit"
-                value={visitorForm.purposeOfVisit}
-                onChange={handleVisitorChange}
+                {...registerVisitor('purposeOfVisit')}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter purpose of visit"
-                required
               />
+              {visitorErrors.purposeOfVisit && (
+                <p className="mt-1 text-sm text-red-600">{visitorErrors.purposeOfVisit.message}</p>
+              )}
             </div>
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              disabled={isSubmitting}
+              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
             >
-              Register as Visitor
+              {isSubmitting ? 'Submitting...' : 'Register as Visitor'}
             </button>
           </form>
         </div>
