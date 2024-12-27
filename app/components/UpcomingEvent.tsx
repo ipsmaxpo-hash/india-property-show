@@ -56,7 +56,7 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
           <Image
             src={event.image}
             alt={event.name}
-            layout="fill"
+            
             
           />
         </Link>
