@@ -34,14 +34,14 @@ const HeroSection: React.FC = () => {
           audience and provides unparalleled exposure.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <a
+          {/* <a
             href="#sponsor-info"
             className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-semibold px-8 py-4 rounded-md text-lg transition transform hover:scale-105 duration-300 shadow-md"
           >
             Learn More About Sponsorship
-          </a>
+          </a> */}
           <a
-            href="#contact"
+            href="/contact"
             className="bg-transparent border-2 border-yellow-500 text-yellow-500 font-semibold px-8 py-4 rounded-md text-lg transition transform hover:scale-105 hover:bg-yellow-500 hover:text-gray-900 duration-300 shadow-md"
           >
             Contact Us

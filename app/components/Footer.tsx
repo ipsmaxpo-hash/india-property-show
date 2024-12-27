@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
                 <FaFacebookF size={24} />
               </a>
               <a
-                href="https://www.instagram.com/officialindiapropertyshow/"
+                href="https://x.com/maxpoae"
                 className="text-white hover:text-indigo-400 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -108,7 +108,7 @@ const Footer: React.FC = () => {
                 <FaInstagram size={24} />
               </a>
               <a
-                href="https://youtube.com"
+                href="https://www.youtube.com/@maxpoexhibitions"
                 className="text-white hover:text-indigo-400 transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"

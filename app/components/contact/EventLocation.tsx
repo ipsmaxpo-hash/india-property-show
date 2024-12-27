@@ -4,7 +4,7 @@ const EventLocation: React.FC = () => {
   return (
     <section id="event-location" className="py-16 bg-gray-100">
       <div className="max-w-7xl mx-auto text-center px-6">
-        <h2 className="text-3xl font-semibold text-gray-800 mb-6">Event Location</h2>
+        <h2 className="text-3xl font-semibold text-gray-800 mb-6">Our Location</h2>
         <p className="text-lg text-gray-600 mb-8">
           Join us at the venue for an unforgettable experience! Find the exact location below.
         </p>

@@ -17,8 +17,8 @@ interface Event {
   image: string | StaticImageData
   link: string
   logo: string
-  floorPlanUrl?: string
-  brochureUrl?: string
+  // floorPlanUrl?: string
+  // brochureUrl?: string
 }
 
 const events: Event[] = [
@@ -31,8 +31,8 @@ const events: Event[] = [
     image: img1,
     link: "https://bahrain-maxpo-exhibitions.vercel.app/",
     logo: "/placeholder.svg?height=100&width=200",
-    floorPlanUrl: "#floorplan",
-    brochureUrl: "#brochure",
+    // floorPlanUrl: "#floorplan",
+    // brochureUrl: "#brochure",
   },
   {
     id: "2",
@@ -43,15 +43,15 @@ const events: Event[] = [
     image: img2,
     link: "https://bahrain-maxpo-exhibitions.vercel.app/",
     logo: "/placeholder.svg?height=100&width=200",
-    floorPlanUrl: "#floorplan",
-    brochureUrl: "#brochure",
+    // floorPlanUrl: "#floorplan",
+    // brochureUrl: "#brochure",
   },
 ]
 
 const EventCard: React.FC<{ event: Event }> = ({ event }) => {
   return (
     <div className="bg-white rounded-lg shadow-xl overflow-hidden">
-      <div className="relative h-64 w-full">
+      <div className="relative  w-full">
         <Link href={event.link}>
           <Image
             src={event.image}
@@ -99,7 +99,7 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
           >
             Register Now
           </a>
-          <div className="space-x-4 text-lg">
+          {/* <div className="space-x-4 text-lg">
             {event.floorPlanUrl && (
               <a
                 href={event.floorPlanUrl}
@@ -119,7 +119,7 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
                 Brochure
               </a>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

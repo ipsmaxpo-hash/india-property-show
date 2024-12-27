@@ -1,4 +1,4 @@
-import BecomeASponsor from "../components/sponsors/BecomeASponsor";
+// import BecomeASponsor from "../components/sponsors/BecomeASponsor";
 import HeroSection from "../components/sponsors/HeroSection";
 import Introduction from "../components/sponsors/Introduction";
 // import OurSponsors from "../components/sponsors/OurSponsors";
@@ -13,7 +13,7 @@ export default function Home() {
       <Introduction />
       {/* <OurSponsors /> */}
       <Sponsors />
-      <BecomeASponsor />
+      {/* <BecomeASponsor /> */}
       <SubscriptionCTA />
       </main>
     )

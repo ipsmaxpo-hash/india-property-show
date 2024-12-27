@@ -24,12 +24,12 @@ const ContactUsHeroSection: React.FC = () => {
           <p className="text-xl sm:text-2xl mb-8">
             Have questions or want to learn more about our services? We&apos;re here to help. Contact us today!
           </p>
-          <a
+          {/* <a
             href="#contact-form"
             className="inline-block px-8 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg hover:bg-blue-700 transition duration-300"
           >
             Contact Us
-          </a>
+          </a> */}
         </div>
       </div>
     </section>
