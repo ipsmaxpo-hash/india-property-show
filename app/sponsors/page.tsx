@@ -3,7 +3,7 @@ import HeroSection from "../components/sponsors/HeroSection";
 import Introduction from "../components/sponsors/Introduction";
 // import OurSponsors from "../components/sponsors/OurSponsors";
 import Sponsors from "../components/sponsors/Sponsors";
-import SubscriptionCTA from "../components/sponsors/SubscriptionCTA";
+// import SubscriptionCTA from "../components/sponsors/SubscriptionCTA";
 
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
       {/* <OurSponsors /> */}
       <Sponsors />
       {/* <BecomeASponsor /> */}
-      <SubscriptionCTA />
+      {/* <SubscriptionCTA /> */}
       </main>
     )
   }
