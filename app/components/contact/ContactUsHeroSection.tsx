@@ -22,7 +22,7 @@ const ContactUsHeroSection: React.FC = () => {
             Get in Touch with Us
           </h1>
           <p className="text-xl sm:text-2xl mb-8">
-            Have questions or want to learn more about our services? We're here to help. Contact us today!
+            Have questions or want to learn more about our services? We&apos;re here to help. Contact us today!
           </p>
           <a
             href="#contact-form"

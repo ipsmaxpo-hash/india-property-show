@@ -9,7 +9,7 @@ const Introduction: React.FC = () => {
         </h2>
         <p className="text-lg sm:text-xl text-gray-700 mb-8">
           Sponsoring our event will put your brand at the forefront of the real
-          estate industry. With exposure to a highly targeted audience, you'll
+          estate industry. With exposure to a highly targeted audience, you&apos;ll
           benefit from brand visibility, increased credibility, and opportunities
           for networking with key decision-makers.
         </p>

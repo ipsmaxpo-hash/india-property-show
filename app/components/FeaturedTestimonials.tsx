@@ -67,7 +67,7 @@ const FeaturedTestimonials: React.FC = () => {
               {/* Content */}
               <div className="p-6">
                 <p className="text-gray-600 italic mb-4">
-                  "{testimonial.feedback}"
+                  &ldquo;{testimonial.feedback}&rdquo;
                 </p>
                 <h3 className="text-lg font-bold text-gray-800">
                   {testimonial.name}

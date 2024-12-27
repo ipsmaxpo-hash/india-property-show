@@ -12,8 +12,8 @@ const BlogsIntroduction: React.FC = () => {
         {/* Section Description */}
         <p className="text-lg md:text-xl text-gray-600 leading-relaxed">
           Stay updated with the latest trends in real estate, insightful articles, 
-          and highlights from our past events. Whether you're a first-time visitor or 
-          a regular reader, you'll find something valuable to explore.
+          and highlights from our past events. Whether you&apos;re a first-time visitor or 
+          a regular reader, you&apos;ll find something valuable to explore.
         </p>
       </div>
 

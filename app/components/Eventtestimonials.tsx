@@ -3,7 +3,8 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import Img1 from "@/app/images/sponsers/img (1).png"
+import Img1 from "@/app/images/sponsers/img (1).png";
+
 // Dynamically import Slider for client-side rendering
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
@@ -70,7 +71,7 @@ const Testimonials: React.FC = () => {
               </div>
               {/* Feedback */}
               <p className="text-lg text-gray-700 italic mb-4">
-                "{testimonial.feedback}"
+                &ldquo;{testimonial.feedback}&rdquo;
               </p>
               {/* Name and Designation */}
               <div>

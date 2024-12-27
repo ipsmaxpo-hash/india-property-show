@@ -30,7 +30,7 @@ const HeroSection: React.FC = () => {
         </h1>
         <p className="text-lg sm:text-xl md:text-2xl mb-8 max-w-2xl mx-auto drop-shadow-md">
           Partner with us to create an unforgettable experience. Supporting the
-          industry's biggest property show places your brand in front of a global
+          industry&apos;s biggest property show places your brand in front of a global
           audience and provides unparalleled exposure.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
