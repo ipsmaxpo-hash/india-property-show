@@ -27,12 +27,22 @@ export async function POST(request: Request) {
 
     // Configure Nodemailer transporter
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false, // Use TLS
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
     })
+
+    // Verify transporter configuration
+    try {
+      await transporter.verify()
+    } catch (error) {
+      console.error("Transporter verification failed:", error)
+      return NextResponse.json({ error: "Email service configuration error" }, { status: 500 })
+    }
 
     // Prepare email content
     let emailSubject: string, emailContent: string
@@ -60,12 +70,17 @@ export async function POST(request: Request) {
     }
 
     // Send the email
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: "digital@maxpo.ae",
-      subject: emailSubject,
-      html: emailContent,
-    })
+    try {
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: "digital@maxpo.ae",
+        subject: emailSubject,
+        html: emailContent,
+      })
+    } catch (error) {
+      console.error("Error sending email:", error)
+      return NextResponse.json({ error: "Failed to send email" }, { status: 500 })
+    }
 
     return NextResponse.json({ message: "Registration successful!" }, { status: 200 })
   } catch (error) {
