@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 // Example blog data
 const blogs = [
@@ -53,7 +54,7 @@ const BlogList: React.FC = () => {
           >
             {/* Blog Image */}
             <div className="relative">
-              <img
+              <Image
                 src={blog.image}
                 alt={blog.title}
                 className="w-full h-56 object-cover"

@@ -69,6 +69,11 @@ const Footer: React.FC = () => {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link href="/privacy-policy" className="hover:text-indigo-400 transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -138,6 +143,12 @@ const Footer: React.FC = () => {
               </button>
             </form>
             {message && <p className="mt-4 text-sm text-gray-300">{message}</p>}
+          </div>
+
+          <div>
+            <h3 className="text-2xl font-semibold mb-4">Contact Us</h3>
+            <p className="text-gray-400">Email: info@indiapropertyshow.in</p>
+            <p className="text-gray-400">Phone: +91 9845114655</p>
           </div>
         </div>
         <div className="border-t border-gray-700 mt-12 pt-6 text-center">

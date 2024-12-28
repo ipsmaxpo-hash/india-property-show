@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 const videos = [
   {
@@ -40,7 +41,7 @@ const EventVideos: React.FC = () => {
                 className="block"
               >
                 {/* Video Thumbnail */}
-                <img
+                <Image
                   src={video.thumbnail}
                   alt={video.title}
                   className="w-full h-auto"

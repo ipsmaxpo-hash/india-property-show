@@ -1,5 +1,5 @@
 import React from "react";
-
+import Image from "next/image";
 // Import all sponsor images statically
 import Img1 from "@/app/images/sponsers/img (1).png";
 import Img2 from "@/app/images/sponsers/img (2).png";
@@ -116,7 +116,7 @@ const Sponsors: React.FC = () => {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
           {sponsorImages.map((sponsor, index) => (
             <div key={index} className="flex justify-center">
-              <img
+              <Image
                 src={sponsor.src.src} // Use .src for imported images in Next.js
                 alt={sponsor.name}
                 className="max-w-full h-auto object-contain transition transform hover:scale-105"
