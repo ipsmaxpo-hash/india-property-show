@@ -1,5 +1,5 @@
 import Footer from './components/Footer'
-import MetaPixel from './components/MetaPixel'
+// import MetaPixel from './components/MetaPixel'
 import Navbar from './components/Navbar'
 import Script from 'next/script'
 // import Document from './document'
