@@ -1,6 +1,7 @@
 import Footer from './components/Footer'
+import MetaPixel from './components/MetaPixel'
 import Navbar from './components/Navbar'
-import Document from './document'
+// import Document from './document'
 import './globals.css'
 import type { Metadata } from 'next'
 
@@ -17,7 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Document />
+        {/* <Document /> */}
+        <MetaPixel pixelId="469919302514972" />
         <Navbar />
         {children}
         <Footer />
