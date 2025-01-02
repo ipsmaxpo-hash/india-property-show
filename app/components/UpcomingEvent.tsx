@@ -41,7 +41,7 @@ const events: Event[] = [
     date: "15th - 16th February 2025",
     eventDate: new Date("2025-02-15T00:00:00"),
     image: img2,
-    link: "https://bahrain-maxpo-exhibitions.vercel.app/",
+    link: "https://usa-exhibition.vercel.app/",
     logo: "/placeholder.svg?height=100&width=200",
     // floorPlanUrl: "#floorplan",
     // brochureUrl: "#brochure",
