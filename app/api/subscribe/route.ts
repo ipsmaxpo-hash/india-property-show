@@ -22,6 +22,7 @@ export async function POST(request: Request) {
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: "digital@maxpo.ae",
+      cc: "anu@maxpo.ae",
       subject: "New IPS Lead",
       text: `New lead has subscribed with the email: ${email}`,
       html: `<p>New lead has subscribed with the email: ${email}</p>`,
