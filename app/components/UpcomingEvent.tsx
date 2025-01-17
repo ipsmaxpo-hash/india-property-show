@@ -37,7 +37,7 @@ const events: Event[] = [
   {
     id: "2",
     name: "India Property Show (USA)",
-    location: "scattle venue Coast Hotel 116,Bellevue WA 98004,USA",
+    location: "Seattle Venue Coast Hotel 116, Bellevue WA 98004, USA",
     date: "15th - 16th February 2025",
     eventDate: new Date("2025-02-15T00:00:00"),
     image: img2,
