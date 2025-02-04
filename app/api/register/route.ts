@@ -5,12 +5,11 @@ type FormData = {
   email: string;
   companyName?: string;
   city?: string;
-  country?: string;
   contactPerson?: string;
   designation?: string;
   mobileNumber?: string;
   name?: string;
-  purposeOfVisit?: string;
+  budget?: string;
 }
 
 type RegistrationType = 'exhibitor' | 'visitor';
@@ -27,12 +26,10 @@ export async function POST(request: Request) {
 
     // Configure Nodemailer transporter
     const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false, // Use TLS
+      service: "gmail",
       auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
+        user: "chvamshi03@gmail.com", // Your email address
+        pass: 'zfie hmte iyxt wyto', // Your email password or app password
       },
     })
 
@@ -62,17 +59,17 @@ export async function POST(request: Request) {
       emailContent = `
         <h2>New Visitor Registration</h2>
         <p><strong>Name:</strong> ${formData.name}</p>
-        <p><strong>Country:</strong> ${formData.country}</p>
+        <p><strong>City:</strong> ${formData.city}</p>
         <p><strong>Email:</strong> ${formData.email}</p>
         <p><strong>Mobile Number:</strong> ${formData.mobileNumber}</p>
-        <p><strong>Purpose of Visit:</strong> ${formData.purposeOfVisit}</p>
+        <p><strong>Budget:</strong> ${formData.budget}</p>
       `
     }
 
     // Send the email
     try {
       await transporter.sendMail({
-        from: process.env.EMAIL_USER,
+        from: "chvamshi03@gmail.com",
         to: "digital@maxpo.ae",
         cc: "annu@maxpo.ae",
         subject: emailSubject,

@@ -20,14 +20,11 @@ const exhibitorSchema = z.object({
 
 const visitorSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
-  country: z.enum(["Bahrain", "India", "UAE", "Saudi Arabia", "Kuwait", "Oman", "Qatar" , "other"] as [string, ...string[]], {
-    errorMap: () => ({ message: "Please select a country" }),
-  }),
+  city: z.string().min(2, "Please enter your city"),
   email: z.string().email("Please enter a valid email address"),
   mobileNumber: z.string().regex(/^\+?[1-9]\d{7,14}$/, "Please enter a valid mobile number"),
-  // eventType: z.literal('India Property Show (Bahrain)'),
-  purposeOfVisit: z.string().min(5, "Purpose of visit must be at least 5 characters"),
-})
+  budget: z.string().min(1, "Please enter your preferred budget"),
+});
 
 type ExhibitorFormData = z.infer<typeof exhibitorSchema>
 type VisitorFormData = z.infer<typeof visitorSchema>
@@ -222,85 +219,88 @@ export function RegistrationForms() {
         </div>
 
         <div className="bg-white shadow-md rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-6">Visitor Registration</h2>
-          <form onSubmit={handleSubmitVisitor(handleVisitorSubmit)} className="space-y-4">
-            <div>
-              <label htmlFor="visitorName" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-              <input
-                type="text"
-                id="visitorName"
-                {...registerVisitor('name')}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your name"
-              />
-              {visitorErrors.name && (
-                <p className="mt-1 text-sm text-red-600">{visitorErrors.name.message}</p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="visitorCountry" className="block text-sm font-medium text-gray-700 mb-1">Country</label>
-              <select
-                id="visitorCountry"
-                {...registerVisitor('country')}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="">Select country</option>
-                {["Bahrain", "India", "UAE", "Saudi Arabia", "Kuwait", "Oman", "Qatar" , "other"].map((country) => (
-                  <option key={country} value={country}>{country}</option>
-                ))}
-              </select>
-              {visitorErrors.country && (
-                <p className="mt-1 text-sm text-red-600">{visitorErrors.country.message}</p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="visitorEmail" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-              <input
-                type="email"
-                id="visitorEmail"
-                {...registerVisitor('email')}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your email"
-              />
-              {visitorErrors.email && (
-                <p className="mt-1 text-sm text-red-600">{visitorErrors.email.message}</p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="visitorMobile" className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
-              <input
-                type="tel"
-                id="visitorMobile"
-                {...registerVisitor('mobileNumber')}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your mobile number"
-              />
-              {visitorErrors.mobileNumber && (
-                <p className="mt-1 text-sm text-red-600">{visitorErrors.mobileNumber.message}</p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="purposeOfVisit" className="block text-sm font-medium text-gray-700 mb-1">Purpose of Visit</label>
-              <input
-                type="text"
-                id="purposeOfVisit"
-                {...registerVisitor('purposeOfVisit')}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter purpose of visit"
-              />
-              {visitorErrors.purposeOfVisit && (
-                <p className="mt-1 text-sm text-red-600">{visitorErrors.purposeOfVisit.message}</p>
-              )}
-            </div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
-            >
-              {isSubmitting ? 'Submitting...' : 'Register as Visitor'}
-            </button>
-          </form>
-        </div>
+  <h2 className="text-2xl font-bold mb-6">Visitor Registration</h2>
+  <form onSubmit={handleSubmitVisitor(handleVisitorSubmit)} className="space-y-4">
+    <div>
+      <label htmlFor="visitorName" className="block text-sm font-medium text-gray-700 mb-1">
+        Name
+      </label>
+      <input
+        type="text"
+        id="visitorName"
+        {...registerVisitor('name')}
+        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter your name"
+      />
+      {visitorErrors.name && <p className="mt-1 text-sm text-red-600">{visitorErrors.name.message}</p>}
+    </div>
+
+    <div>
+  <label htmlFor="visitorCity" className="block text-sm font-medium text-gray-700 mb-1">
+    Preferred City
+  </label>
+  <input
+    type="text"
+    id="visitorCity"
+    {...registerVisitor('city')}
+    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    placeholder="Enter your city"
+  />
+  {visitorErrors.city && <p className="mt-1 text-sm text-red-600">{visitorErrors.city.message}</p>}
+</div>
+
+    <div>
+      <label htmlFor="visitorEmail" className="block text-sm font-medium text-gray-700 mb-1">
+        Email Address
+      </label>
+      <input
+        type="email"
+        id="visitorEmail"
+        {...registerVisitor('email')}
+        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter your email"
+      />
+      {visitorErrors.email && <p className="mt-1 text-sm text-red-600">{visitorErrors.email.message}</p>}
+    </div>
+
+    <div>
+      <label htmlFor="visitorMobile" className="block text-sm font-medium text-gray-700 mb-1">
+        Mobile Number
+      </label>
+      <input
+        type="tel"
+        id="visitorMobile"
+        {...registerVisitor('mobileNumber')}
+        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter your mobile number"
+      />
+      {visitorErrors.mobileNumber && <p className="mt-1 text-sm text-red-600">{visitorErrors.mobileNumber.message}</p>}
+    </div>
+
+    <div>
+      <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-1">
+        Preferred Budget
+      </label>
+      <input
+        type="text"
+        id="budget"
+        {...registerVisitor('budget')}
+        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter your preferred budget"
+      />
+      {visitorErrors.budget && <p className="mt-1 text-sm text-red-600">{visitorErrors.budget.message}</p>}
+    </div>
+
+    <button
+      type="submit"
+      disabled={isSubmitting}
+      className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+    >
+      {isSubmitting ? 'Submitting...' : 'Register as Visitor'}
+    </button>
+  </form>
+</div>
+
       </div>
     </div>
   )
