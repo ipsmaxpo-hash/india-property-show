@@ -234,21 +234,21 @@ export function RegistrationForms() {
       />
       {visitorErrors.name && <p className="mt-1 text-sm text-red-600">{visitorErrors.name.message}</p>}
     </div>
-
+  
     <div>
-  <label htmlFor="visitorCity" className="block text-sm font-medium text-gray-700 mb-1">
-    Preferred City
-  </label>
-  <input
-    type="text"
-    id="visitorCity"
-    {...registerVisitor('city')}
-    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-    placeholder="Enter your city"
-  />
-  {visitorErrors.city && <p className="mt-1 text-sm text-red-600">{visitorErrors.city.message}</p>}
-</div>
-
+      <label htmlFor="visitorMobile" className="block text-sm font-medium text-gray-700 mb-1">
+        Mobile Number
+      </label>
+      <input
+        type="tel"
+        id="visitorMobile"
+        {...registerVisitor('mobileNumber')}
+        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter your mobile number"
+      />
+      {visitorErrors.mobileNumber && <p className="mt-1 text-sm text-red-600">{visitorErrors.mobileNumber.message}</p>}
+    </div>
+    
     <div>
       <label htmlFor="visitorEmail" className="block text-sm font-medium text-gray-700 mb-1">
         Email Address
@@ -264,18 +264,21 @@ export function RegistrationForms() {
     </div>
 
     <div>
-      <label htmlFor="visitorMobile" className="block text-sm font-medium text-gray-700 mb-1">
-        Mobile Number
-      </label>
-      <input
-        type="tel"
-        id="visitorMobile"
-        {...registerVisitor('mobileNumber')}
-        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Enter your mobile number"
-      />
-      {visitorErrors.mobileNumber && <p className="mt-1 text-sm text-red-600">{visitorErrors.mobileNumber.message}</p>}
-    </div>
+  <label htmlFor="visitorCity" className="block text-sm font-medium text-gray-700 mb-1">
+    Preferred City
+  </label>
+  <input
+    type="text"
+    id="visitorCity"
+    {...registerVisitor('city')}
+    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    placeholder="Enter your city"
+  />
+  {visitorErrors.city && <p className="mt-1 text-sm text-red-600">{visitorErrors.city.message}</p>}
+</div>
+
+  
+   
 
     <div>
       <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-1">
