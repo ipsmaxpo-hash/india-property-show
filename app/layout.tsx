@@ -1,14 +1,38 @@
-import Footer from './components/Footer'
-// import MetaPixel from './components/MetaPixel'
-import Navbar from './components/Navbar'
-import Script from 'next/script'
-// import Document from './document'
-import './globals.css'
-import type { Metadata } from 'next'
+import Footer from "./components/Footer"
+import Navbar from "./components/Navbar"
+import Script from "next/script"
+import "./globals.css"
+import type { Metadata } from "next"
+import type React from "react" // Added import for React
 
 export const metadata: Metadata = {
-  title: 'India Property Show',
-  description: 'Leading the future of innovative exhibitions, dynamic conferences and memorable experiences',
+  title: "India Property Show",
+  description:
+    "The top realestate display for NRI's featuring exclusive investment opportunties and luxuruous properties",
+  openGraph: {
+    title: "India Property Show",
+    description:
+      "The top realestate display for NRI's featuring exclusive investment opportunties and luxuruous properties",
+    url: "https://www.indiapropertyshow.in",
+    siteName: "India Property Show",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "India Property Show",
+    description:
+      "The top realestate display for NRI's featuring exclusive investment opportunties and luxuruous properties",
+  },
+  keywords: ["India Property Show", "Real Estate Exhibition", "Bahrain Property Event", "Real Estate Conference","usa Estate Exhibition","India Property Show-2025"],
+  authors: [{ name: "India Property Show" }],
+  creator: "India Property Show",
+  publisher: "India Property Show",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
 }
 
 export default function RootLayout({
@@ -18,7 +42,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-       <head>
+      <head>
         <Script
           id="fb-pixel"
           strategy="afterInteractive"
@@ -39,8 +63,6 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {/* <Document /> */}
-        
         <Navbar />
         {children}
         <Footer />
