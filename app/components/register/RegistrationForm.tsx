@@ -8,15 +8,15 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 // Removed countries array
 
-const exhibitorSchema = z.object({
-  companyName: z.string().min(2, "Company name must be at least 2 characters"),
-  city: z.string().min(2, "City name must be at least 2 characters"),
-  contactPerson: z.string().min(2, "Contact person name must be at least 2 characters"),
-  designation: z.string().min(2, "Designation must be at least 2 characters"),
-  mobileNumber: z.string().regex(/^\+?[1-9]\d{7,14}$/, "Please enter a valid mobile number"),
-  email: z.string().email("Please enter a valid email address"),
-  // eventType: z.literal('India Property Show (Bahrain)'),
-})
+// const exhibitorSchema = z.object({
+//   companyName: z.string().min(2, "Company name must be at least 2 characters"),
+//   city: z.string().min(2, "City name must be at least 2 characters"),
+//   contactPerson: z.string().min(2, "Contact person name must be at least 2 characters"),
+//   designation: z.string().min(2, "Designation must be at least 2 characters"),
+//   mobileNumber: z.string().regex(/^\+?[1-9]\d{7,14}$/, "Please enter a valid mobile number"),
+//   email: z.string().email("Please enter a valid email address"),
+//   // eventType: z.literal('India Property Show (Bahrain)'),
+// })
 
 const visitorSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -26,7 +26,7 @@ const visitorSchema = z.object({
   budget: z.string().min(1, "Please enter your preferred budget"),
 });
 
-type ExhibitorFormData = z.infer<typeof exhibitorSchema>
+// type ExhibitorFormData = z.infer<typeof exhibitorSchema>
 type VisitorFormData = z.infer<typeof visitorSchema>
 
 export function RegistrationForms() {
@@ -54,26 +54,26 @@ export function RegistrationForms() {
    
   })
 
-  const handleExhibitorSubmit = async (data: ExhibitorFormData) => {
-    setIsSubmitting(true)
-    try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ type: 'exhibitor', ...data }),
-      })
-      if (!response.ok) throw new Error('Failed to submit form')
-      setShowThankYou(true)
-      setRegistrationType('exhibitor')
-    } catch (error) {
-      console.error('Error submitting exhibitor form:', error)
-      toast.error('Failed to submit exhibitor form. Please try again.')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
+  // const handleExhibitorSubmit = async (data: ExhibitorFormData) => {
+  //   setIsSubmitting(true)
+  //   try {
+  //     const response = await fetch('/api/register', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ type: 'exhibitor', ...data }),
+  //     })
+  //     if (!response.ok) throw new Error('Failed to submit form')
+  //     setShowThankYou(true)
+  //     setRegistrationType('exhibitor')
+  //   } catch (error) {
+  //     console.error('Error submitting exhibitor form:', error)
+  //     toast.error('Failed to submit exhibitor form. Please try again.')
+  //   } finally {
+  //     setIsSubmitting(false)
+  //   }
+  // }
 
   const handleVisitorSubmit = async (data: VisitorFormData) => {
     setIsSubmitting(true)
