@@ -34,15 +34,15 @@ export function RegistrationForms() {
   const [showThankYou, setShowThankYou] = useState(false)
   const [registrationType, setRegistrationType] = useState<'exhibitor' | 'visitor' | null>(null)
 
-  const {
-    register: registerExhibitor,
-    handleSubmit: handleSubmitExhibitor,
-    formState: { errors: exhibitorErrors },
-    reset: resetExhibitor,
-  } = useForm<ExhibitorFormData>({
-    resolver: zodResolver(exhibitorSchema),
+  // const {
+  //   register: registerExhibitor,
+  //   handleSubmit: handleSubmitExhibitor,
+  //   formState: { errors: exhibitorErrors },
+  //   reset: resetExhibitor,
+  // } = useForm<ExhibitorFormData>({
+  //   resolver: zodResolver(exhibitorSchema),
    
-  })
+  // })
 
   const {
     register: registerVisitor,
@@ -97,7 +97,7 @@ export function RegistrationForms() {
   }
 
   const resetForms = () => {
-    resetExhibitor()
+    // resetExhibitor()
     resetVisitor()
     setShowThankYou(false)
     setRegistrationType(null)
@@ -125,187 +125,184 @@ export function RegistrationForms() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="grid md:grid-cols-2 gap-8">
-        <div className="bg-white shadow-md rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-6">Exhibitor Registration</h2>
-          <form onSubmit={handleSubmitExhibitor(handleExhibitorSubmit)} className="space-y-4">
-            <div>
-              <label htmlFor="companyName" className="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
-              <input
-                type="text"
-                id="companyName"
-                {...registerExhibitor('companyName')}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter company name"
-              />
-              {exhibitorErrors.companyName && (
-                <p className="mt-1 text-sm text-red-600">{exhibitorErrors.companyName.message}</p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="exhibitorCity" className="block text-sm font-medium text-gray-700 mb-1">City</label>
-              <input
-                type="text"
-                id="exhibitorCity"
-                {...registerExhibitor('city')}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter city"
-              />
-              {exhibitorErrors.city && (
-                <p className="mt-1 text-sm text-red-600">{exhibitorErrors.city.message}</p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="contactPerson" className="block text-sm font-medium text-gray-700 mb-1">Contact Person</label>
-              <input
-                type="text"
-                id="contactPerson"
-                {...registerExhibitor('contactPerson')}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter contact person"
-              />
-              {exhibitorErrors.contactPerson && (
-                <p className="mt-1 text-sm text-red-600">{exhibitorErrors.contactPerson.message}</p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="designation" className="block text-sm font-medium text-gray-700 mb-1">Designation</label>
-              <input
-                type="text"
-                id="designation"
-                {...registerExhibitor('designation')}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter designation"
-              />
-              {exhibitorErrors.designation && (
-                <p className="mt-1 text-sm text-red-600">{exhibitorErrors.designation.message}</p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="exhibitorMobile" className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
-              <input
-                type="tel"
-                id="exhibitorMobile"
-                {...registerExhibitor('mobileNumber')}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter mobile number"
-              />
-              {exhibitorErrors.mobileNumber && (
-                <p className="mt-1 text-sm text-red-600">{exhibitorErrors.mobileNumber.message}</p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="exhibitorEmail" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-              <input
-                type="email"
-                id="exhibitorEmail"
-                {...registerExhibitor('email')}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter email"
-              />
-              {exhibitorErrors.email && (
-                <p className="mt-1 text-sm text-red-600">{exhibitorErrors.email.message}</p>
-              )}
-            </div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
-            >
-              {isSubmitting ? 'Submitting...' : 'Register as Exhibitor'}
-            </button>
-          </form>
-        </div>
+    // <div className="container mx-auto px-4 py-8">
+    //   <div className="grid md:grid-cols-2 gap-8">
+    //     {/* <div className="bg-white shadow-md rounded-lg p-6">
+    //       <h2 className="text-2xl font-bold mb-6">Exhibitor Registration</h2> */}
+    //       {/* <form onSubmit={handleSubmitExhibitor(handleExhibitorSubmit)} className="space-y-4">
+    //         <div>
+    //           <label htmlFor="companyName" className="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+    //           <input
+    //             type="text"
+    //             id="companyName"
+    //             {...registerExhibitor('companyName')}
+    //             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    //             placeholder="Enter company name"
+    //           />
+    //           {exhibitorErrors.companyName && (
+    //             <p className="mt-1 text-sm text-red-600">{exhibitorErrors.companyName.message}</p>
+    //           )}
+    //         </div>
+    //         <div>
+    //           <label htmlFor="exhibitorCity" className="block text-sm font-medium text-gray-700 mb-1">City</label>
+    //           <input
+    //             type="text"
+    //             id="exhibitorCity"
+    //             {...registerExhibitor('city')}
+    //             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    //             placeholder="Enter city"
+    //           />
+    //           {exhibitorErrors.city && (
+    //             <p className="mt-1 text-sm text-red-600">{exhibitorErrors.city.message}</p>
+    //           )}
+    //         </div>
+    //         <div>
+    //           <label htmlFor="contactPerson" className="block text-sm font-medium text-gray-700 mb-1">Contact Person</label>
+    //           <input
+    //             type="text"
+    //             id="contactPerson"
+    //             {...registerExhibitor('contactPerson')}
+    //             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    //             placeholder="Enter contact person"
+    //           />
+    //           {exhibitorErrors.contactPerson && (
+    //             <p className="mt-1 text-sm text-red-600">{exhibitorErrors.contactPerson.message}</p>
+    //           )}
+    //         </div>
+    //         <div>
+    //           <label htmlFor="designation" className="block text-sm font-medium text-gray-700 mb-1">Designation</label>
+    //           <input
+    //             type="text"
+    //             id="designation"
+    //             {...registerExhibitor('designation')}
+    //             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    //             placeholder="Enter designation"
+    //           />
+    //           {exhibitorErrors.designation && (
+    //             <p className="mt-1 text-sm text-red-600">{exhibitorErrors.designation.message}</p>
+    //           )}
+    //         </div>
+    //         <div>
+    //           <label htmlFor="exhibitorMobile" className="block text-sm font-medium text-gray-700 mb-1">Mobile Number</label>
+    //           <input
+    //             type="tel"
+    //             id="exhibitorMobile"
+    //             {...registerExhibitor('mobileNumber')}
+    //             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    //             placeholder="Enter mobile number"
+    //           />
+    //           {exhibitorErrors.mobileNumber && (
+    //             <p className="mt-1 text-sm text-red-600">{exhibitorErrors.mobileNumber.message}</p>
+    //           )}
+    //         </div>
+    //         <div>
+    //           <label htmlFor="exhibitorEmail" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+    //           <input
+    //             type="email"
+    //             id="exhibitorEmail"
+    //             {...registerExhibitor('email')}
+    //             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+    //             placeholder="Enter email"
+    //           />
+    //           {exhibitorErrors.email && (
+    //             <p className="mt-1 text-sm text-red-600">{exhibitorErrors.email.message}</p>
+    //           )}
+    //         </div>
+    //         <button
+    //           type="submit"
+    //           disabled={isSubmitting}
+    //           className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+    //         >
+    //           {isSubmitting ? 'Submitting...' : 'Register as Exhibitor'}
+    //         </button>
+    //       </form>
+    //     </div> */}
 
-        <div className="bg-white shadow-md rounded-lg p-6">
-  <h2 className="text-2xl font-bold mb-6">Visitor Registration</h2>
-  <form onSubmit={handleSubmitVisitor(handleVisitorSubmit)} className="space-y-4">
-    <div>
-      <label htmlFor="visitorName" className="block text-sm font-medium text-gray-700 mb-1">
-        Name
-      </label>
-      <input
-        type="text"
-        id="visitorName"
-        {...registerVisitor('name')}
-        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Enter your name"
-      />
-      {visitorErrors.name && <p className="mt-1 text-sm text-red-600">{visitorErrors.name.message}</p>}
-    </div>
-  
-    <div>
-      <label htmlFor="visitorMobile" className="block text-sm font-medium text-gray-700 mb-1">
-        Mobile Number
-      </label>
-      <input
-        type="tel"
-        id="visitorMobile"
-        {...registerVisitor('mobileNumber')}
-        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Enter your mobile number"
-      />
-      {visitorErrors.mobileNumber && <p className="mt-1 text-sm text-red-600">{visitorErrors.mobileNumber.message}</p>}
-    </div>
-    
-    <div>
-      <label htmlFor="visitorEmail" className="block text-sm font-medium text-gray-700 mb-1">
-        Email Address
-      </label>
-      <input
-        type="email"
-        id="visitorEmail"
-        {...registerVisitor('email')}
-        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Enter your email"
-      />
-      {visitorErrors.email && <p className="mt-1 text-sm text-red-600">{visitorErrors.email.message}</p>}
-    </div>
-
-    <div>
-  <label htmlFor="visitorCity" className="block text-sm font-medium text-gray-700 mb-1">
-    Preferred City
-  </label>
-  <input
-    type="text"
-    id="visitorCity"
-    {...registerVisitor('city')}
-    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-    placeholder="Enter your city"
-  />
-  {visitorErrors.city && <p className="mt-1 text-sm text-red-600">{visitorErrors.city.message}</p>}
-</div>
-
-  
-   
-
-    <div>
-      <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-1">
-        Preferred Budget
-      </label>
-      <input
-        type="text"
-        id="budget"
-        {...registerVisitor('budget')}
-        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        placeholder="Enter your preferred budget"
-      />
-      {visitorErrors.budget && <p className="mt-1 text-sm text-red-600">{visitorErrors.budget.message}</p>}
-    </div>
-
-    <button
-      type="submit"
-      disabled={isSubmitting}
-      className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
-    >
-      {isSubmitting ? 'Submitting...' : 'Register as Visitor'}
-    </button>
-  </form>
-</div>
-
+<div className="flex justify-center items-center min-h-screen">
+  <div className="bg-white shadow-md rounded-lg p-10 w-full max-w-md">
+    <h2 className="text-2xl font-bold mb-6 text-center">Visitor Registration</h2>
+    <form onSubmit={handleSubmitVisitor(handleVisitorSubmit)} className="space-y-4">
+      <div>
+        <label htmlFor="visitorName" className="block text-sm font-medium text-gray-700 mb-1">
+          Name
+        </label>
+        <input
+          type="text"
+          id="visitorName"
+          {...registerVisitor('name')}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter your name"
+        />
+        {visitorErrors.name && <p className="mt-1 text-sm text-red-600">{visitorErrors.name.message}</p>}
       </div>
-    </div>
+
+      <div>
+        <label htmlFor="visitorMobile" className="block text-sm font-medium text-gray-700 mb-1">
+          Mobile Number
+        </label>
+        <input
+          type="tel"
+          id="visitorMobile"
+          {...registerVisitor('mobileNumber')}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter your mobile number"
+        />
+        {visitorErrors.mobileNumber && <p className="mt-1 text-sm text-red-600">{visitorErrors.mobileNumber.message}</p>}
+      </div>
+
+      <div>
+        <label htmlFor="visitorEmail" className="block text-sm font-medium text-gray-700 mb-1">
+          Email Address
+        </label>
+        <input
+          type="email"
+          id="visitorEmail"
+          {...registerVisitor('email')}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter your email"
+        />
+        {visitorErrors.email && <p className="mt-1 text-sm text-red-600">{visitorErrors.email.message}</p>}
+      </div>
+
+      <div>
+        <label htmlFor="visitorCity" className="block text-sm font-medium text-gray-700 mb-1">
+          Preferred City
+        </label>
+        <input
+          type="text"
+          id="visitorCity"
+          {...registerVisitor('city')}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter your city"
+        />
+        {visitorErrors.city && <p className="mt-1 text-sm text-red-600">{visitorErrors.city.message}</p>}
+      </div>
+
+      <div>
+        <label htmlFor="budget" className="block text-sm font-medium text-gray-700 mb-1">
+          Preferred Budget
+        </label>
+        <input
+          type="text"
+          id="budget"
+          {...registerVisitor('budget')}
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Enter your preferred budget"
+        />
+        {visitorErrors.budget && <p className="mt-1 text-sm text-red-600">{visitorErrors.budget.message}</p>}
+      </div>
+
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+      >
+        {isSubmitting ? 'Submitting...' : 'Register as Visitor'}
+      </button>
+    </form>
+  </div>
+</div>
+
   )
 }
 

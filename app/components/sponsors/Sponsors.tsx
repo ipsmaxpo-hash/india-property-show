@@ -117,10 +117,12 @@ const Sponsors: React.FC = () => {
           {sponsorImages.map((sponsor, index) => (
             <div key={index} className="flex justify-center">
               <Image
-                src={sponsor.src.src} // Use .src for imported images in Next.js
-                alt={sponsor.name}
-                className="max-w-full h-auto object-contain transition transform hover:scale-105"
-              />
+  src={sponsor.src} // No need for .src
+  alt={sponsor.name}
+  width={200} // Adjust width as needed
+  height={100} // Adjust height as needed
+  className="max-w-full h-auto object-contain transition transform hover:scale-105"
+/>
             </div>
           ))}
         </div>
