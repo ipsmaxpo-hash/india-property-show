@@ -55,7 +55,7 @@ export async function POST(request: Request) {
         <p><strong>Email:</strong> ${formData.email}</p>
       `
     } else {
-      emailSubject = "New Visitor Registration - India Property Show"
+      emailSubject = "New Visitor Registration - India Property Show website"
       emailContent = `
         <h2>New Visitor Registration</h2>
         <p><strong>Name:</strong> ${formData.name}</p>
@@ -70,7 +70,7 @@ export async function POST(request: Request) {
     try {
       await transporter.sendMail({
         from: "chvamshi03@gmail.com",
-        to: "digital@maxpo.ae",
+        to: "digital@maxpo.ae, digital.maxpo@gmail.com",
         cc: "annu@maxpo.ae",
         subject: emailSubject,
         html: emailContent,
