@@ -30,6 +30,18 @@ const events = [
     floorPlanUrl: "#floorplan",
     brochureUrl: "#brochure",
   },
+  {
+    id: "3",
+    name: "India Property Show",
+    location: "At King Faisal Road - Manama, Bahrain",
+    date: "21st - 22nd February 2025",
+    eventDate: new Date("2025-02-21T00:00:00"),
+    image: img2,
+    link: "https://bahrain-maxpo-exhibitions.vercel.app/",
+    logo: "/placeholder.svg?height=100&width=200",
+    floorPlanUrl: "#floorplan",
+    brochureUrl: "#brochure",
+  },
 ]
 
 const MultipleEventCountdown: React.FC = () => {

@@ -5,7 +5,7 @@ import Countdown from "react-countdown"
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa"
 import Image, { StaticImageData } from "next/image"
 import Link from "next/link"
-import img1 from '@/app/images/upcomming/1x.jpg'
+import img1 from '@/public/images/WhatsApp Image 2025-03-21 at 11.58.43 AM (1).jpeg'
 import img2 from '@/app/images/upcomming/usa.jpg'
 
 interface Event {
@@ -24,28 +24,30 @@ interface Event {
 const events: Event[] = [
   {
     id: "1",
-    name: "India Property Show (Bahrain)",
-    location: "At King Faisal Road - Manama, Bahrain",
-    date: "21st - 22nd February 2025",
-    eventDate: new Date("2025-02-21T00:00:00"),
+    name: "Gulf News presents India Property Show",
+    location: "Crowne Plaza, Sheikh Zayed Road, Dubai",
+    date: "17-18 May 2025",
+    eventDate: new Date("2025-05-17T00:00:00"),
     image: img1,
     link: "https://bahrain-maxpo-exhibitions.vercel.app/",
     logo: "/placeholder.svg?height=100&width=200",
     // floorPlanUrl: "#floorplan",
     // brochureUrl: "#brochure",
   },
-  {
-    id: "2",
-    name: "India Property Show (USA)",
-    location: "Seattle Venue Coast Hotel 116, Bellevue WA 98004, USA",
-    date: "15th - 16th February 2025",
-    eventDate: new Date("2025-02-15T00:00:00"),
-    image: img2,
-    link: "https://usa-exhibition.vercel.app/",
-    logo: "/placeholder.svg?height=100&width=200",
-    // floorPlanUrl: "#floorplan",
-    // brochureUrl: "#brochure",
-  },
+  // {
+  //   id: "2",
+  //   name: "India Property Show (USA)",
+  //   location: "Seattle Venue Coast Hotel 116, Bellevue WA 98004, USA",
+  //   date: "15th - 16th February 2025",
+  //   eventDate: new Date("2025-02-15T00:00:00"),
+  //   image: img2,
+  //   link: "https://usa-exhibition.vercel.app/",
+  //   logo: "/placeholder.svg?height=100&width=200",
+  //   // floorPlanUrl: "#floorplan",
+  //   // brochureUrl: "#brochure",
+  // },
+
+
 ]
 
 const EventCard: React.FC<{ event: Event }> = ({ event }) => {
@@ -128,18 +130,20 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
 
 const MultipleEventCountdown: React.FC = () => {
   return (
-    <section className="py-16 bg-blue-950">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <h2 className="text-4xl font-bold text-white text-center mb-12">
-          Upcoming Events
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {events.map((event) => (
+    <section className="py-16 bg-blue-950 flex justify-center">
+    <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
+      <h2 className="text-4xl font-bold text-white text-center mb-12">
+        Upcoming Events
+      </h2>
+      <div className="flex justify-center items-center">
+        {events.map((event) => (
+          <div className="w-full max-w-lg">
             <EventCard key={event.id} event={event} />
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
+  </section>
   )
 }
 
