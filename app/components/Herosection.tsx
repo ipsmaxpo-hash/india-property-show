@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "next/image";
+import logo1 from "@/public/images/gulfnews logo white logo 2.png";
 
 const HeroSection: React.FC = () => {
   return (
@@ -11,18 +13,29 @@ const HeroSection: React.FC = () => {
           loop
           muted
           playsInline
-          // Add your video source path here
           src="/video/Shows.mp4"
         />
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
       </div>
+
+    
+      
       {/* Content on top of video */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center h-full px-4 text-white">
+          {/* Logo Image */}
+      <div className="relative w-[150px] h-[50px] mx-auto mt-10 z-10">
+        <Image
+          src={logo1}
+          alt="Proptech Expo 2025 Logo"
+          fill
+          className="object-contain"
+          sizes="150px"
+        />
+      </div>
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
           India Property Show
         </h1>
         <p className="text-lg md:text-xl mb-8">
-          {/* Join us on <strong>March 15, 2025</strong> at <strong>Convention Center, Mumbai</strong>. */}
           Discover the best properties in India!
         </p>
         <div className="flex gap-4">
@@ -32,12 +45,6 @@ const HeroSection: React.FC = () => {
           >
             Register Now
           </a>
-          {/* <a
-            href="#learn-more"
-            className="px-6 py-3 bg-transparent border border-white hover:bg-white hover:text-black text-lg font-semibold rounded-lg transition"
-          >
-            Learn More
-          </a> */}
         </div>
       </div>
     </section>
