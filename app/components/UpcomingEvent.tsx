@@ -137,11 +137,11 @@ const MultipleEventCountdown: React.FC = () => {
         Upcoming Events
       </h2>
       <div className="flex justify-center items-center">
-        {events.map((event) => (
-          <div className="w-full max-w-lg">
-            <EventCard key={event.id} event={event} />
-          </div>
-        ))}
+      {events.map((event) => (
+  <div key={event.id} className="w-full max-w-lg">
+    <EventCard event={event} />
+  </div>
+))}
       </div>
     </div>
   </section>
