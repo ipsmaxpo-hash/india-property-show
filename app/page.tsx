@@ -12,7 +12,7 @@
 import FeaturedSponsors from "./components/FeaturedSponsors";
 // import Footer from "./components/Footer";
 import HeroSection from "./components/Herosection";
-import ManagementTeam from "./components/ManagementTeam";
+// import ManagementTeam from "./components/ManagementTeam";
 // import KeyCategories from "./components/KeyCategories";
 import MaxpoExhibitions from "./components/MaxpoExhibitions";
 import PopularExhibitions from "./components/PopularExhibitions";
