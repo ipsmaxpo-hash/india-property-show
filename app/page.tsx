@@ -31,7 +31,7 @@ export default function Home() {
       <PopularExhibitions />
       {/* <KeyCategories /> */}
       <FeaturedSponsors />
-      <ManagementTeam />
+      {/* <ManagementTeam /> */}
       <Testimonials />
      
       {/* <Header /> */}
