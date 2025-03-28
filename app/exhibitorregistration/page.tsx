@@ -27,7 +27,7 @@ export default function ExhibitorRegistration() {
     e.preventDefault();
     setLoading(true);
     setError(null);
-
+  
     try {
       const response = await fetch("/api/exhibitor-registeration", {
         method: "POST",
@@ -36,21 +36,24 @@ export default function ExhibitorRegistration() {
         },
         body: JSON.stringify(formData),
       });
-
+  
       const result = await response.json();
-
+  
       if (!response.ok) {
         throw new Error(result.message || "Something went wrong. Please try again.");
       }
-
+  
       setSubmitted(true);
-    } catch (err: any) {
-      setError(err.message || "Failed to submit the form. Please try again.");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Failed to submit the form. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
   };
-
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen px-4 pt-40">
       {/* Background Image */}
