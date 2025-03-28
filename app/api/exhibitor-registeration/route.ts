@@ -21,8 +21,8 @@ export async function POST(req: NextRequest) {
 
     // Email content
     const mailOptions = {
-      from: "IPS <chvamshi03@gmail.com>",
-      to: "vamshi.maxpo@gmail.com",
+      from: "India Property Show<chvamshi03@gmail.com>",
+      to: "digital.maxpo@gmail.com,annu@indiapropertyshow.in,anu.maxpo@gmail.com",
       subject: "Exhibitor Registration Form",
       html: `
         <h2>New Exhibitor Registration</h2>
