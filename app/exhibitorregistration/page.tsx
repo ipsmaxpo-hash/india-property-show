@@ -69,7 +69,7 @@ export default function ExhibitorRegistration() {
         />
       </div>
 
-      {/* Dark Overlay */}
+      {/* Dark Overlay. */}
       <div className="absolute inset-0 bg-black bg-opacity-50 -z-10"></div>
 
       {/* Heading Section */}
