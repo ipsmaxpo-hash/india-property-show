@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import MissionAndVision from "../components/MissionAndVision";
 import Gallery from "../components/Gallery";
-import ManagementTeam from "../components/ManagementTeam";
+// import ManagementTeam from "../components/ManagementTeam";
 import Hero from "@/app/images/about/hero.jpg"
 
 const About: React.FC = () => {
@@ -55,7 +55,7 @@ const About: React.FC = () => {
         </div>
       </section>
       <MissionAndVision />
-      <ManagementTeam />
+      {/* <ManagementTeam /> */}
       <Gallery />
     </div>
   );
