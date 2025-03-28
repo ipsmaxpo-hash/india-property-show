@@ -55,7 +55,7 @@ const About: React.FC = () => {
         </div>
       </section>
       <MissionAndVision />
-      <ManagementTeam />
+      {/* <ManagementTeam /> */}
       <Gallery />
     </div>
   );
