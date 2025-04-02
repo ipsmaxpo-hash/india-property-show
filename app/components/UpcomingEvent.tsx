@@ -1,11 +1,7 @@
 'use client';
 
 import React from "react";
-// import Countdown from "react-countdown";
-import CountdownTimer from "@/app/components/CountdownTimer"; // Import new component
-
-
-
+import Countdown from "react-countdown";
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
@@ -40,20 +36,49 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
     <div className="bg-white rounded-lg shadow-xl overflow-hidden">
       <div className="relative w-full">
         <Link href={event.link}>
-          <Image src={event.image} alt={event.name} />
+          <Image src={event.image} alt={event.name} width={500} height={300} />
         </Link>
       </div>
       <div className="p-8">
         <h3 className="text-3xl font-bold text-gray-800 mb-3">{event.name}</h3>
         <p className="text-lg text-gray-600 mb-4 flex items-start">
           <FaMapMarkerAlt className="mr-2 mt-1 text-blue-600" />
-          <span className="whitespace-normal">{event.location}</span>
+          <Link
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
+          >
+            {event.location}
+          </Link>
         </p>
         <p className="text-lg text-gray-600 mb-4 flex items-center">
           <FaCalendarAlt className="mr-2" />
           {event.date}
         </p>
-        <CountdownTimer eventDate={event.eventDate} />
+        <Countdown
+          date={event.eventDate}
+          renderer={({ days, hours, minutes, seconds }) => (
+            <div className="flex justify-between text-center mb-8">
+              <div className="bg-blue-100 rounded p-3">
+                <div className="text-3xl font-bold text-blue-600">{days}</div>
+                <div className="text-base text-blue-600">Days</div>
+              </div>
+              <div className="bg-blue-100 rounded p-3">
+                <div className="text-3xl font-bold text-blue-600">{hours}</div>
+                <div className="text-base text-blue-600">Hours</div>
+              </div>
+              <div className="bg-blue-100 rounded p-3">
+                <div className="text-3xl font-bold text-blue-600">{minutes}</div>
+                <div className="text-base text-blue-600">Minutes</div>
+              </div>
+              <div className="bg-blue-100 rounded p-3">
+                <div className="text-3xl font-bold text-blue-600">{seconds}</div>
+                <div className="text-base text-blue-600">Seconds</div>
+              </div>
+            </div>
+          )}
+        />
         <div className="flex justify-between items-center">
           <a
             href="/register"
