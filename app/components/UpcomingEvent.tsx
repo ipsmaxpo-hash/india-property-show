@@ -5,7 +5,7 @@ import Countdown from "react-countdown"
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa"
 import Image, { StaticImageData } from "next/image"
 import Link from "next/link"
-import img1 from '@/public/images/WhatsApp Image 2025-03-21 at 11.58.43 AM (1).jpeg'
+import img1 from '@/public/images/gnpresentspropertyshow.jpg'
 
 
 
