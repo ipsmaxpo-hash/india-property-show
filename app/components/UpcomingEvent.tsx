@@ -5,7 +5,7 @@ import Countdown from "react-countdown";
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-import img1 from '@/public/images/gnpresentspropertyshow.jpg';
+import img1 from '@/public/images/4x (1).jpg';
 
 interface Event {
   id: string;
@@ -36,7 +36,7 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
     <div className="bg-white rounded-lg shadow-xl overflow-hidden">
       <div className="relative w-full">
         <Link href={event.link}>
-          <Image src={event.image} alt={event.name} width={500} height={300} />
+          <Image src={event.image} alt={event.name} width={550} height={300} />
         </Link>
       </div>
       <div className="p-8">
