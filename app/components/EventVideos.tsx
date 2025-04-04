@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-// import Image from "next/image";
+import Image from "next/image"; // <-- Un-commented this
 
 const videos = [
   {
     title: "India Property Show - 2024",
     url: "https://youtu.be/zvn801GmCrc?si=HLqx_nQKsqzbY1x0",
-    thumbnail: "https://img.youtube.com/vi/zvn801GmCrc/0.jpg", // Replace with YouTube thumbnail
+    thumbnail: "https://img.youtube.com/vi/zvn801GmCrc/0.jpg",
   },
   {
     title: "Global Real Estate Summit 2022 Recap",
@@ -40,17 +40,15 @@ const EventVideos: React.FC = () => {
                 rel="noopener noreferrer"
                 className="block"
               >
-                {/* Video Thumbnail */}
-                {/* <Image
-  src={video.thumbnail}
-  alt={video.title}
-  width={480}  // Standard YouTube thumbnail width
-  height={360} // Standard YouTube thumbnail height
-  className="w-full h-auto"
-/> */}
-            <img src={video.thumbnail} alt={video.title} className="w-full h-auto" />
+                {/* Use Next.js Image component for optimization */}
+                <Image
+                  src={video.thumbnail}
+                  alt={video.title}
+                  width={480}
+                  height={360}
+                  className="w-full h-auto"
+                />
 
-                {/* Video Title */}
                 <div className="p-4">
                   <h3 className="text-lg font-bold text-gray-700">
                     {video.title}

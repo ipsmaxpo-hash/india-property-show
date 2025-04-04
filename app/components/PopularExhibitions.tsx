@@ -54,16 +54,17 @@ const events: Event[] = [
 
 const EventCard: React.FC<{ event: Event }> = ({ event }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <div className="relative h-48">
+    <div className="bg-white rounded-lg shadow-md border border-gray-300 overflow-hidden">
+      <div className="relative h-56 overflow-hidden group">
         <Image
           src={event.image}
           alt={event.name}
           layout="fill"
-        //   objectFit="cover"
+          objectFit="cover"
+          className="transition-transform duration-500 ease-in-out group-hover:scale-110"
         />
       </div>
-      <div className="p-4">
+      <div className="p-4 text-center">
         <h3 className="text-lg font-semibold text-gray-800 mb-2">{event.name}</h3>
         <p className="text-sm text-gray-600">{event.location}</p>
       </div>
@@ -89,4 +90,3 @@ const PopularExhibitions: React.FC = () => {
 }
 
 export default PopularExhibitions
-

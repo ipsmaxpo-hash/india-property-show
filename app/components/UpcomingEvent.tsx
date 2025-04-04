@@ -41,17 +41,20 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
       </div>
       <div className="p-8">
         <h3 className="text-3xl font-bold text-gray-800 mb-3">{event.name}</h3>
-        <p className="text-lg text-gray-600 mb-4 flex items-start">
-          <FaMapMarkerAlt className="mr-2 mt-1 text-blue-600" />
-          <Link
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
-          >
-            {event.location}
-          </Link>
-        </p>
+        <div className="text-lg text-gray-600 mb-4 flex items-center">
+  <div className="mr-3">
+    <FaMapMarkerAlt className="text-blue-600" size={25} />
+  </div>
+  <Link
+    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-blue-600 hover:underline"
+  >
+    {event.location}
+  </Link>
+</div>
+
         <p className="text-lg text-gray-600 mb-4 flex items-center">
           <FaCalendarAlt className="mr-2" />
           {event.date}
