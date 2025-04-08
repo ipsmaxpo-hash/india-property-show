@@ -40,7 +40,7 @@ const HeroSection: React.FC = () => {
         </p>
         <div className="flex gap-4">
           <a
-            href="/register"
+            href="/exhibitorregistration"
             className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold rounded-lg shadow-md transition"
           >
             Register Now
