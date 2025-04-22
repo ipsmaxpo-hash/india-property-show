@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import bgImage from "@/public/images/ips exhibitor registration.jpg";
+import logo1 from "@/public/images/gulfnews logo white logo 2.png";
 
 export default function ExhibitorRegistration() {
   const [formData, setFormData] = useState({
@@ -80,9 +81,18 @@ export default function ExhibitorRegistration() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-       <h2 className="text-4xl font-extrabold text-yellow-400 drop-shadow-lg mt-6 mb-2">
+       {/* <h2 className="text-4xl font-extrabold text-yellow-400 drop-shadow-lg mt-6 mb-2">
   Gulf News Presents
-</h2>
+</h2> */}
+      <div className="relative w-[150px] h-[50px] mx-auto mt-10 z-10">
+        <Image
+          src={logo1}
+          alt="Proptech Expo 2025 Logo"
+          fill
+          className="object-contain"
+          sizes="150px"
+        />
+      </div>
 <h3 className="text-3xl font-semibold text-white tracking-wide drop-shadow-md">
   India Property Show
 </h3>
