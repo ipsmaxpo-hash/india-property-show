@@ -6,11 +6,18 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { motion, AnimatePresence } from 'framer-motion'
 
+// Extend the schema for checkboxes
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
   email: z.string().email("Please enter a valid email address."),
   phone: z.string().regex(/^\+?[1-9]\d{1,14}$/, "Please enter a valid phone number.").optional(),
   message: z.string().min(10, "Message must be at least 10 characters."),
+  termsAccepted: z.boolean().refine(val => val, {
+    message: "You must accept the Terms & Conditions and Privacy Policy.",
+  }),
+  marketingConsent: z.boolean().refine(val => val, {
+    message: "You must agree to receive marketing updates.",
+  }),
 })
 
 type FormData = z.infer<typeof formSchema>
@@ -26,6 +33,10 @@ const ContactForm: React.FC = () => {
     reset,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      termsAccepted: true,
+      marketingConsent: true,
+    }
   })
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
@@ -56,7 +67,8 @@ const ContactForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-5xl mx-auto p-8 bg-white rounded-lg shadow-xl space-y-6">
       <h2 className="text-3xl font-bold text-center text-gray-900">Contact Us</h2>
-      
+
+      {/* Full Name */}
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
         <input
@@ -68,6 +80,7 @@ const ContactForm: React.FC = () => {
         {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>}
       </div>
 
+      {/* Email Address */}
       <div>
         <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address</label>
         <input
@@ -79,6 +92,7 @@ const ContactForm: React.FC = () => {
         {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>}
       </div>
 
+      {/* Phone Number */}
       <div>
         <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number (optional)</label>
         <input
@@ -90,6 +104,7 @@ const ContactForm: React.FC = () => {
         {errors.phone && <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>}
       </div>
 
+      {/* Message */}
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-gray-700">Your Message</label>
         <textarea
@@ -101,6 +116,35 @@ const ContactForm: React.FC = () => {
         {errors.message && <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>}
       </div>
 
+      {/* Terms & Conditions Checkbox */}
+      <div className="flex items-start space-x-3">
+        <input
+          {...register('termsAccepted')}
+          type="checkbox"
+          id="termsAccepted"
+          className="mt-1 h-5 w-5 text-indigo-600 border-gray-300 rounded"
+        />
+        <label htmlFor="termsAccepted" className="text-sm text-gray-700">
+          I confirm that I have read, understand and accept the <a href="/privacy-policy" target="_blank" className="text-blue-600 underline">Terms & Conditions</a> and <a href="/privacy-policy" target="_blank" className="text-blue-600 underline">Privacy Policy</a> of India Property Show.
+        </label>
+      </div>
+      {errors.termsAccepted && <p className="mt-1 text-sm text-red-600">{errors.termsAccepted.message}</p>}
+
+      {/* Marketing Consent Checkbox */}
+      <div className="flex items-start space-x-3">
+        <input
+          {...register('marketingConsent')}
+          type="checkbox"
+          id="marketingConsent"
+          className="mt-1 h-5 w-5 text-indigo-600 border-gray-300 rounded"
+        />
+        <label htmlFor="marketingConsent" className="text-sm text-gray-700">
+          I agree to allow India Property Show to contact me about their events and other marketing updates. Also, India Property Show may share my details with carefully vetted third parties and other participants to improve the overall event experience.
+        </label>
+      </div>
+      {errors.marketingConsent && <p className="mt-1 text-sm text-red-600">{errors.marketingConsent.message}</p>}
+
+      {/* Submitting Animation */}
       <AnimatePresence>
         {isSubmitting && (
           <motion.div
@@ -118,12 +162,14 @@ const ContactForm: React.FC = () => {
         )}
       </AnimatePresence>
 
+      {/* Submit Message */}
       {submitMessage && (
         <p className={`mt-4 text-center text-sm ${submitMessage.includes("problem") ? "text-red-600" : "text-green-600"}`}>
           {submitMessage}
         </p>
       )}
 
+      {/* Submit Button */}
       <button
         type="submit"
         disabled={isSubmitting}
@@ -136,4 +182,3 @@ const ContactForm: React.FC = () => {
 }
 
 export default ContactForm
-

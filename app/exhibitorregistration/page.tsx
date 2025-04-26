@@ -13,6 +13,8 @@ export default function ExhibitorRegistration() {
     company: "",
     designation: "",
     city: "",
+    termsAccepted: true,
+    agreeMarketing: true,
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -20,14 +22,18 @@ export default function ExhibitorRegistration() {
   const [error, setError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-  
+
     try {
       const response = await fetch("/api/exhibitor-registeration", {
         method: "POST",
@@ -36,13 +42,13 @@ export default function ExhibitorRegistration() {
         },
         body: JSON.stringify(formData),
       });
-  
+
       const result = await response.json();
-  
+
       if (!response.ok) {
         throw new Error(result.message || "Something went wrong. Please try again.");
       }
-  
+
       setSubmitted(true);
     } catch (err: unknown) {
       if (err instanceof Error) {
@@ -54,6 +60,7 @@ export default function ExhibitorRegistration() {
       setLoading(false);
     }
   };
+
   return (
     <div className="relative flex flex-col items-center justify-center min-h-screen px-4 pt-40">
       {/* Background Image */}
@@ -69,7 +76,7 @@ export default function ExhibitorRegistration() {
         />
       </div>
 
-      {/* Dark Overlay. */}
+      {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50 -z-10"></div>
 
       {/* Heading Section */}
@@ -80,12 +87,12 @@ export default function ExhibitorRegistration() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-       <h2 className="text-4xl font-extrabold text-yellow-400 drop-shadow-lg mt-6 mb-2">
-  Gulf News Presents
-</h2>
-<h3 className="text-3xl font-semibold text-white tracking-wide drop-shadow-md">
-  India Property Show
-</h3>
+        <h2 className="text-4xl font-extrabold text-yellow-400 drop-shadow-lg mt-6 mb-2">
+          Gulf News Presents
+        </h2>
+        <h3 className="text-3xl font-semibold text-white tracking-wide drop-shadow-md">
+          India Property Show
+        </h3>
       </motion.div>
 
       {/* Form Section */}
@@ -118,7 +125,7 @@ export default function ExhibitorRegistration() {
                   <input
                     type="text"
                     name={field}
-                    value={formData[field as keyof typeof formData]}
+                    value={formData[field as keyof typeof formData] as string}
                     onChange={handleChange}
                     required
                     className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50"
@@ -127,8 +134,61 @@ export default function ExhibitorRegistration() {
                 </motion.div>
               ))}
 
+              {/* Terms & Conditions Checkbox */}
+              <motion.div
+                className="flex items-start space-x-3"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.7 }}
+              >
+                <input
+                  type="checkbox"
+                  name="termsAccepted"
+                  checked={formData.termsAccepted}
+                  onChange={handleChange}
+                  required
+                  className="mt-1"
+                />
+                <label className="text-gray-700 text-sm">
+                  I confirm that I have read, understand, and accept the{" "}
+                  <a href="/privacy-policy" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">
+                    Terms & Conditions
+                  </a>{" "}
+                  and{" "}
+                  <a href="/privacy-policy" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">
+                    Privacy Policy
+                  </a>{" "}
+                  of India Property Show.
+                </label>
+              </motion.div>
+
+              {/* Marketing Updates Checkbox */}
+              <motion.div
+                className="flex items-start space-x-3 mt-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.8 }}
+              >
+                <input
+                  type="checkbox"
+                  name="agreeMarketing"
+                  checked={formData.agreeMarketing}
+                  onChange={handleChange}
+                  required
+                  className="mt-1"
+                />
+                <label className="text-gray-700 text-sm">
+                  I agree to allow India Property Show to contact me about their events and marketing updates. 
+                  India Property Show may also share my details with carefully vetted third parties to improve the overall event experience.
+                </label>
+              </motion.div>
+
+              {/* Error */}
               {error && <p className="text-red-500 text-center">{error}</p>}
 
+              {/* Submit Button */}
               <motion.button
                 type="submit"
                 disabled={loading}
@@ -153,7 +213,7 @@ export default function ExhibitorRegistration() {
         )}
       </motion.section>
 
-      {/* Additional Spacing Below */}
+      {/* Additional Spacing */}
       <div className="h-20"></div>
     </div>
   );
