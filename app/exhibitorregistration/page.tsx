@@ -152,11 +152,11 @@ export default function ExhibitorRegistration() {
                 />
                 <label className="text-gray-700 text-sm">
                   I confirm that I have read, understand, and accept the{" "}
-                  <a href="/privacy-policy" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.maxpo.ae/privacy" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">
                     Terms & Conditions
                   </a>{" "}
                   and{" "}
-                  <a href="/privacy-policy" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.maxpo.ae/privacy" className="text-blue-600 underline" target="_blank" rel="noopener noreferrer">
                     Privacy Policy
                   </a>{" "}
                   of India Property Show.
