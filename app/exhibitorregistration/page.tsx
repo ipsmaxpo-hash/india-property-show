@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import bgImage from "@/public/images/ips exhibitor registration.jpg";
-import logo1 from "@/public/images/gulfnews logo white logo 2.png";
+// import logo1 from "@/public/images/gulfnews logo white logo 2.png";
 
 export default function ExhibitorRegistration() {
   const [formData, setFormData] = useState({
