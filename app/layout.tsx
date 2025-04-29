@@ -1,9 +1,9 @@
-import Footer from "./components/Footer"
-import Navbar from "./components/Navbar"
-import Script from "next/script"
-import "./globals.css"
-import type { Metadata } from "next"
-import type React from "react" // Added import for React
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import Script from "next/script";
+import "./globals.css";
+import type { Metadata } from "next";
+import type React from "react";
 
 export const metadata: Metadata = {
   title: "India Property Show",
@@ -24,7 +24,14 @@ export const metadata: Metadata = {
     description:
       "The top realestate display for NRI's featuring exclusive investment opportunties and luxuruous properties",
   },
-  keywords: ["India Property Show", "Real Estate Exhibition", "Bahrain Property Event", "Real Estate Conference","usa Estate Exhibition","India Property Show-2025"],
+  keywords: [
+    "India Property Show",
+    "Real Estate Exhibition",
+    "Bahrain Property Event",
+    "Real Estate Conference",
+    "usa Estate Exhibition",
+    "India Property Show-2025",
+  ],
   authors: [{ name: "India Property Show" }],
   creator: "India Property Show",
   publisher: "India Property Show",
@@ -33,16 +40,17 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
       <head>
+        {/* Facebook Pixel */}
         <Script
           id="fb-pixel"
           strategy="afterInteractive"
@@ -61,6 +69,20 @@ export default function RootLayout({
             `,
           }}
         />
+
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-EMXSBSKYZW"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-EMXSBSKYZW');
+          `}
+        </Script>
       </head>
       <body>
         <Navbar />
@@ -68,6 +90,5 @@ export default function RootLayout({
         <Footer />
       </body>
     </html>
-  )
+  );
 }
-
