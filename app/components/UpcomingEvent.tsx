@@ -109,7 +109,7 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
           )}
         />
 
-        {/* Button pinned at bottom ......*/}
+        {/* Button pinned at bottom ...ssss...*/}
         <div className="mt-auto">
           <a
             href="/exhibitorregistration"
