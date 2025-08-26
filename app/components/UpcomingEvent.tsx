@@ -36,7 +36,7 @@ const events: Event[] = [
     name: "Gulf News presents India Edu-Fair",
     location: "Dubai",
     date: "06-07 December 2025",
-    eventDate: new Date("2025-11-17T00:00:00"),
+    eventDate: new Date("2025-12-17T00:00:00"),
     image: dubai,
     link: "https://bahrain-maxpo-exhibitions.vercel.app/",
     logo: "/placeholder.svg?height=100&width=200",
