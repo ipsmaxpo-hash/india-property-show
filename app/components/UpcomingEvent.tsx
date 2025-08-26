@@ -5,7 +5,8 @@ import Countdown from "react-countdown";
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
 import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-import img1 from '@/public/images/4x (1).jpg';
+import singapore from '@/public/images/singapore-ips.jpg';
+import dubai from '@/public/images/dubai-ips.jpg';
 
 interface Event {
   id: string;
@@ -21,11 +22,22 @@ interface Event {
 const events: Event[] = [
   {
     id: "1",
-    name: "Gulf News presents India Property Show",
-    location: "Millennium Plaza Downtown Hotel, Sheikh Zayed Road - Dubai (Formerly known as Crowne Plaza Hotel)",
-    date: "17-18 May 2025",
-    eventDate: new Date("2025-05-17T00:00:00"),
-    image: img1,
+    name: "Gulf News presents India Property Show ",
+    location:
+      "Singapore",
+    date: "15-16 November 2025",
+    eventDate: new Date("2025-11-17T00:00:00"),
+    image: singapore,
+    link: "",
+    logo: "/placeholder.svg?height=100&width=200",
+  },
+  {
+    id: "2",
+    name: "Gulf News presents India Edu-Fair",
+    location: "Dubai",
+    date: "15-16 November 2025",
+    eventDate: new Date("2025-11-17T00:00:00"),
+    image: dubai,
     link: "https://bahrain-maxpo-exhibitions.vercel.app/",
     logo: "/placeholder.svg?height=100&width=200",
   },
@@ -33,59 +45,75 @@ const events: Event[] = [
 
 const EventCard: React.FC<{ event: Event }> = ({ event }) => {
   return (
-    <div className="bg-white rounded-lg shadow-xl overflow-hidden">
-      <div className="relative w-full">
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-[640px] w-96">
+      {/* Image */}
+      <div className="relative w-full h-72">
         <Link href={event.link}>
-          <Image src={event.image} alt={event.name} width={550} height={300} />
+          <Image
+            src={event.image}
+            alt={event.name}
+            fill
+            className="object-cover"
+          />
         </Link>
       </div>
-      <div className="p-8">
-        <h3 className="text-3xl font-bold text-gray-800 mb-3">{event.name}</h3>
-        <div className="text-lg text-gray-600 mb-4 flex items-center">
-  <div className="mr-3">
-    <FaMapMarkerAlt className="text-blue-600" size={25} />
-  </div>
-  <Link
-    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(event.location)}`}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-blue-600 hover:underline"
-  >
-    {event.location}
-  </Link>
-</div>
 
-        <p className="text-lg text-gray-600 mb-4 flex items-center">
-          <FaCalendarAlt className="mr-2" />
+      {/* Content */}
+      <div className="flex flex-col flex-1 p-6">
+        {/* Title with clamp */}
+        <h3 className="text-2xl font-semibold text-gray-800 mb-3 line-clamp-2">
+          {event.name}
+        </h3>
+
+        <div className="text-gray-600 text-sm mb-3 flex items-start gap-2 line-clamp-2">
+          <FaMapMarkerAlt className="text-blue-600 mt-1" />
+          <Link
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+              event.location
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
+          >
+            {event.location}
+          </Link>
+        </div>
+
+        <p className="text-gray-600 text-sm mb-4 flex items-center gap-2">
+          <FaCalendarAlt className="text-gray-700" />
           {event.date}
         </p>
+
+        {/* Countdown */}
         <Countdown
           date={event.eventDate}
           renderer={({ days, hours, minutes, seconds }) => (
-            <div className="flex justify-between text-center mb-8">
-              <div className="bg-blue-100 rounded p-3">
-                <div className="text-3xl font-bold text-blue-600">{days}</div>
-                <div className="text-base text-blue-600">Days</div>
+            <div className="grid grid-cols-4 gap-2 mb-6">
+              <div className="bg-blue-50 rounded-md p-2">
+                <div className="text-lg font-bold text-blue-600">{days}</div>
+                <div className="text-xs text-blue-600">Days</div>
               </div>
-              <div className="bg-blue-100 rounded p-3">
-                <div className="text-3xl font-bold text-blue-600">{hours}</div>
-                <div className="text-base text-blue-600">Hours</div>
+              <div className="bg-blue-50 rounded-md p-2">
+                <div className="text-lg font-bold text-blue-600">{hours}</div>
+                <div className="text-xs text-blue-600">Hours</div>
               </div>
-              <div className="bg-blue-100 rounded p-3">
-                <div className="text-3xl font-bold text-blue-600">{minutes}</div>
-                <div className="text-base text-blue-600">Minutes</div>
+              <div className="bg-blue-50 rounded-md p-2">
+                <div className="text-lg font-bold text-blue-600">{minutes}</div>
+                <div className="text-xs text-blue-600">Mins</div>
               </div>
-              <div className="bg-blue-100 rounded p-3">
-                <div className="text-3xl font-bold text-blue-600">{seconds}</div>
-                <div className="text-base text-blue-600">Seconds</div>
+              <div className="bg-blue-50 rounded-md p-2">
+                <div className="text-lg font-bold text-blue-600">{seconds}</div>
+                <div className="text-xs text-blue-600">Secs</div>
               </div>
             </div>
           )}
         />
-        <div className="flex justify-between items-center">
+
+        {/* Button pinned at bottom */}
+        <div className="mt-auto">
           <a
             href="/exhibitorregistration"
-            className="px-6 py-3 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition duration-300"
+            className="block w-full text-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
           >
             Register Now
           </a>
@@ -97,14 +125,14 @@ const EventCard: React.FC<{ event: Event }> = ({ event }) => {
 
 const MultipleEventCountdown: React.FC = () => {
   return (
-    <section className="py-16 bg-blue-950 flex justify-center">
+    <section className="py-16 bg-blue-950">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-        <h2 className="text-4xl font-bold text-white text-center mb-12">Upcoming Events</h2>
-        <div className="flex justify-center items-center">
+        <h2 className="text-4xl font-bold text-white mb-12">Upcoming Events</h2>
+
+        {/* Centered layout */}
+        <div className="flex flex-wrap justify-center gap-8">
           {events.map((event) => (
-            <div key={event.id} className="w-full max-w-lg">
-              <EventCard event={event} />
-            </div>
+            <EventCard key={event.id} event={event} />
           ))}
         </div>
       </div>
@@ -113,3 +141,30 @@ const MultipleEventCountdown: React.FC = () => {
 };
 
 export default MultipleEventCountdown;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   {
+  //   id: "1",
+  //   name: "Gulf News presents India Property Show",
+  //   location: "Millennium Plaza Downtown Hotel, Sheikh Zayed Road - Dubai (Formerly known as Crowne Plaza Hotel)",
+  //   date: "17-18 May 2025",
+  //   eventDate: new Date("2025-05-17T00:00:00"),
+  //   image: img1,
+  //   link: "https://bahrain-maxpo-exhibitions.vercel.app/",
+  //   logo: "/placeholder.svg?height=100&width=200",
+  // },
